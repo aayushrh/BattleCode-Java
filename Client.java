@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import Extra.*;
 public class Client {
     private static ArrayList<BattleCodeRobot> brobots;
     private static ArrayList<BattleCodeRobot> rrobots;
@@ -35,57 +36,51 @@ public class Client {
         System.out.println("finished");
     }
 
-    private boolean collisionDetection(int x, int y){
+    private boolean collisionDetection(Location loc){
         boolean returning = false;
         for(BattleCodeRobot r : brobots){
-            if(r.getX() == x && r.getY() == y){
+            if(r.getLocation().equals(loc)){
                 returning = true;
             }
         }
         for(BattleCodeRobot r : rrobots){
-            if(r.getX() == x && r.getY() == y){
+            if(r.getLocation().equals(loc)){
                 returning = true;
             }
         }
         return returning;
     }
 
-    private boolean isInRange(int selfx, int selfy, int x, int y, int range){
-        return Math.sqrt(Math.pow(selfx - x, 2) + Math.pow(selfy - y, 2)) <= range;
+    private boolean isInRange(Location self, Location target, int range){
+        return Math.sqrt(Math.pow(self.x - target.x, 2) + Math.pow(self.y - target.y, 2)) <= range;
     }
 
     public class BattleCodeRobot {
-        private int x, y;
+        private Location loc;
         private char team;
         private int cooldownMove;
 
-        public BattleCodeRobot(int x, int y, char team) {
-            this.x = x;
-            this.y = y;
+        public BattleCodeRobot(Location loc, char team) {
+            this.loc = loc;
             this.team = team;
             this.cooldownMove = 0;
         }
 
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
+        public Location getLocation(){
+            return loc;
         }
 
         public char getTeam() {
             return team;
         }
 
-        public boolean canMove(int x, int y){
-            return !collisionDetection(this.x + x, this.y + y) && isInRange(this.x, this.y, this.x + x, this.y + y, 3) && this.cooldownMove <= 0;
+        public boolean canMove(Direction dir){
+            return !collisionDetection(this.getLocation().addDir(dir)) && isInRange(this.loc, this.getLocation().addDir(dir), 3) && this.cooldownMove <= 0;
         }
 
-        public void move(int x, int y){
-            if(canMove(x, y)){
-                this.x += x;
-                this.y += y;
+        public void move(Direction dir){
+            if(canMove(dir)){
+                this.loc = this.loc.addDir(dir);
             }
         }
 
@@ -96,26 +91,25 @@ public class Client {
     }
 
     public class BattleCodeHQ {
-        private int x, y;
+        private Location loc;
         private char team;
         private int cooldownSpawn;
 
-        public BattleCodeHQ(int x, int y, char team) {
-            this.x = x;
-            this.y = y;
+        public BattleCodeHQ(Location loc, char team) {
+            this.loc = loc;
             this.team = team;
         }
 
-        public boolean canCreate(int x, int y){
-            return (!collisionDetection(x, y) && isInRange(this.x, this.y, x, y, GameConstants.HQSPAWNRANGE) && cooldownSpawn <= 0);
+        public boolean canCreate(Location loc){
+            return (!collisionDetection(loc) && isInRange(this.loc, this.loc.addLoc(loc), GameConstants.HQSPAWNRANGE) && cooldownSpawn <= 0);
         }
 
-        public void create(int x, int y){
-            if(canCreate(x, y)){
+        public void create(Location loc){
+            if(canCreate(loc)){
                 if(this.team == 'B'){
-                    brobots.add(new BattleCodeRobot(x, y, 'B'));
+                    brobots.add(new BattleCodeRobot(loc, 'B'));
                 }else{
-                    rrobots.add(new BattleCodeRobot(x, y, 'B'));
+                    rrobots.add(new BattleCodeRobot(loc, 'B'));
                 }
                 this.cooldownSpawn = GameConstants.HQSPAWNCOOLDOWN;
             }
