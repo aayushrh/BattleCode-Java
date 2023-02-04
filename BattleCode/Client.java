@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import RobotPlayers.*;
 
 public class Client {
-    protected static ArrayList<BattleCodeRobot> robots;
-    protected static ArrayList<BattleCodeHQ> hqs;
+    protected static ArrayList<Robot> robots;
+    protected static ArrayList<HQ> hqs;
 
     public static void init() {
-        robots = new ArrayList<BattleCodeRobot>();
-        hqs = new ArrayList<BattleCodeHQ>();
-        hqs.add(new BattleCodeHQ(new Location(0, 0), 'B'));
-        hqs.add(new BattleCodeHQ(new Location(30, 30), 'R'));
+        robots = new ArrayList<Robot>();
+        hqs = new ArrayList<HQ>();
+        hqs.add(new HQ(new Location(0, 0), 'B'));
+        hqs.add(new HQ(new Location(30, 30), 'R'));
     }
 
     public static void main(String[] args){
         init();
         for(int i = 0; i < GameConstants.ROUNDS; i++){
-            for(BattleCodeRobot r : robots){
+            for(Robot r : robots){
                 if(r.getTeam() == 'B') {
                     BRobot.update(r);
                     System.out.print(robots.size() + " " + i);
@@ -28,7 +28,7 @@ public class Client {
                 }
                 r.endTurn();
             }
-            for(BattleCodeHQ r : hqs){
+            for(HQ r : hqs){
                 if(r.getTeam() == 'R') {
                     BHQ.update(r);
                 }else{

@@ -1,9 +1,9 @@
 package BattleCode;
 
-public class BattleCodeHQ {
-    private boolean collisionDetection(BattleCodeRobot robot, Location loc){
+public class HQ {
+    private boolean collisionDetection(Robot robot, Location loc){
         boolean returning = false;
-        for(BattleCodeRobot r : Client.robots){
+        for(Robot r : Client.robots){
             Location l = r.getLocation();
 
         }
@@ -17,7 +17,7 @@ public class BattleCodeHQ {
     private char team;
     private int cooldownSpawn;
 
-    public BattleCodeHQ(Location loc, char team) {
+    public HQ(Location loc, char team) {
         this.loc = loc;
         this.team = team;
     }
@@ -39,7 +39,7 @@ public class BattleCodeHQ {
 
     public void create(Location loc, int speed, int health, int attack, int commRange, int visRange, int attRange){
         if(canCreate(loc, speed, health, attack, commRange, visRange, attRange)){
-            Client.robots.add(new BattleCodeRobot(loc, 'B', speed, health, attack, commRange, visRange, attRange));
+            Client.robots.add(new Robot(loc, 'B', speed, health, attack, commRange, visRange, attRange));
             this.cooldownSpawn = GameConstants.HQSPAWNCOOLDOWN;
         }
     }

@@ -1,11 +1,9 @@
 package RobotPlayers;
 
-import BattleCode.Location;
-import BattleCode.Direction;
-import BattleCode.GameConstants;
+import BattleCode.HQ;
 
 public class BHQ{
-    public static void update(BattleCode.BattleCodeHQ robot){
+    public static void update(HQ robot){
 
     }
 }
