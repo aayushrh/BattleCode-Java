@@ -1,7 +1,7 @@
 package BattleCode;
 
-import RobotPlayers.Extra.GameConstants;
-import RobotPlayers.Extra.Location;
+import BattleCode.Extra.GameConstants;
+import BattleCode.Extra.Location;
 
 public class BattleCodeHQ {
     private boolean collisionDetection(BattleCodeRobot ignore, Location loc){

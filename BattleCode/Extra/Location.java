@@ -1,4 +1,4 @@
-package RobotPlayers.Extra;
+package BattleCode.Extra;
 
 public class Location {
     public int x;

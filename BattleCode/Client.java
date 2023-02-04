@@ -1,7 +1,7 @@
 package BattleCode;
 
 import java.util.ArrayList;
-import RobotPlayers.Extra.*;
+import BattleCode.Extra.*;
 import RobotPlayers.src.*;
 
 public class Client {
