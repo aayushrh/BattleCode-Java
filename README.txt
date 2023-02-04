@@ -33,7 +33,7 @@ Direction(int x, int y):
   void rotateLeft():
       rotates the Direction 45 degrees to the left (only works in Direction is max of 1 in x and y)
 
-<b>Location(int x, int y):</b>
+Location(int x, int y):
 
   int distanceTo(Location loc):
       finds the distance from the current location to the specified location
