@@ -1,4 +1,4 @@
-package BattleCode.Extra;
+package BattleCode;
 
 public class Direction {
     public int x;

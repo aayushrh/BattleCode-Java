@@ -1,4 +1,4 @@
-package BattleCode.Extra;
+package BattleCode;
 
 public class Location {
     public int x;
@@ -32,5 +32,9 @@ public class Location {
         newLoc.x += loc.x;
         newLoc.y += loc.y;
         return newLoc;
+    }
+
+    public boolean equals(Location loc){
+        return (x == loc.x) && (y == loc.y);
     }
 }

@@ -1,8 +1,8 @@
 package BattleCode;
 
 import java.util.ArrayList;
-import BattleCode.Extra.*;
-import RobotPlayers.src.*;
+
+import RobotPlayers.*;
 
 public class Client {
     protected static ArrayList<BattleCodeRobot> robots;
@@ -11,8 +11,8 @@ public class Client {
     public static void init() {
         robots = new ArrayList<BattleCodeRobot>();
         hqs = new ArrayList<BattleCodeHQ>();
-        //hqs.add(new BattleCodeHQ(new Location(0, 0), 'B'));
-        //hqs.add(new BattleCodeHQ(new Location(30, 30), 'R'));
+        hqs.add(new BattleCodeHQ(new Location(0, 0), 'B'));
+        hqs.add(new BattleCodeHQ(new Location(30, 30), 'R'));
     }
 
     public static void main(String[] args){

@@ -1,8 +1,5 @@
 package BattleCode;
 
-import BattleCode.Extra.Direction;
-import BattleCode.Extra.Location;
-
 public class BattleCodeRobot {
     private boolean collisionDetection(BattleCodeRobot ignore, Location loc){
         boolean returning = false;

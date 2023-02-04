@@ -1,15 +1,11 @@
 package BattleCode;
 
-import BattleCode.Extra.GameConstants;
-import BattleCode.Extra.Location;
-
 public class BattleCodeHQ {
-    private boolean collisionDetection(BattleCodeRobot ignore, Location loc){
+    private boolean collisionDetection(BattleCodeRobot robot, Location loc){
         boolean returning = false;
         for(BattleCodeRobot r : Client.robots){
-            if(r.getLocation().equals(loc) && !r.equals(ignore)){
-                returning = true;
-            }
+            Location l = r.getLocation();
+
         }
         return returning;
     }
