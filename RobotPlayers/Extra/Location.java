@@ -1,4 +1,4 @@
-package Extra;
+package RobotPlayers.Extra;
 
 public class Location {
     public int x;
@@ -20,6 +20,11 @@ public class Location {
         newLoc.x += dir.x;
         newLoc.y += dir.y;
         return newLoc;
+    }
+
+    public int distanceTo(Location loc){
+        int distance = (int)Math.round(Math.sqrt(Math.pow(x - loc.x, 2) + Math.pow(y - loc.y, 2)));
+        return distance;
     }
 
     public Location addLoc(Location loc){

@@ -1,4 +1,4 @@
-package Extra;
+package RobotPlayers.Extra;
 
 public class Direction {
     public int x;

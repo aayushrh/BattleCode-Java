@@ -1,4 +1,4 @@
-package Extra;
+package RobotPlayers.Extra;
 
 public class GameConstants {
     //GENERAL
