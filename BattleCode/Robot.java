@@ -19,7 +19,7 @@ public class Robot {
     private Location loc;
     private char team;
     private int cooldownMove;
-    private int speed, attack, health, commRange, visRange, attackRange;
+    private int speed, attack, health, commRange, visRange, attackRange, id;
 
     public Robot(Location loc, char team, int speed, int attack, int health, int commRange, int visRange, int attackRange) {
         this.loc = loc;
@@ -31,6 +31,22 @@ public class Robot {
         this.commRange = commRange + GameConstants.BASECOMMRANGE;
         this.visRange = visRange + GameConstants.BASEVISRANGE;
         this.attackRange = attackRange + GameConstants.BASEATTRANGE;
+        while(true){
+            this.id = (int)(Math.random() * 100000) + 1;
+            boolean found = false;
+            for(Robot r : Client.robots){
+                if(r.getID() == this.id){
+                    found = true;
+                }
+            }
+            if(!found){
+                break;
+            }
+        }
+    }
+
+    public int getID() {
+        return id;
     }
 
     public int getSpeed() {
