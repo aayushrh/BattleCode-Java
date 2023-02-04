@@ -16,6 +16,9 @@ Robot:
   
   RobotInfo[] senseNearbyRobots(char team, int raidus):
       returns a list of robots that is on the specified team and in a certain radius (doesnt work if radius is more that vision raidus)
+  
+  void log(String str):
+      print the string with your bot's ID and classification
 
 HQ:
   
