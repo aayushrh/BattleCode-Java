@@ -81,6 +81,10 @@ public class Robot {
         return team;
     }
 
+    public void log(String str){
+        System.out.println("[Robot#" + this.id + "]: " + str);
+    }
+
     public ArrayList<RobotInfo> senseNearbyRobots(){
         ArrayList<RobotInfo> nearby = new ArrayList<RobotInfo>();
         for(Robot r : Client.robots){
