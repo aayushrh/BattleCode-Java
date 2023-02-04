@@ -16,14 +16,14 @@ public class Location {
     }
 
     public Location addDir(Direction dir){
-        Location newLoc = this;
+        Location newLoc = new Location(this.x, this.y);
         newLoc.x += dir.x;
         newLoc.y += dir.y;
         return newLoc;
     }
 
     public Location addLoc(Location loc){
-        Location newLoc = this;
+        Location newLoc = new Location(this.x, this.y);
         newLoc.x += loc.x;
         newLoc.y += loc.y;
         return newLoc;
