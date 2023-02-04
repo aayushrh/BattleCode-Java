@@ -17,6 +17,9 @@ public class Client {
 
     public static void main(String[] args){
         init();
+        Direction dir = new Direction(-1, 1);
+        dir.rotateRight();
+        System.out.println(dir.x + " " + dir.y);
         for(int i = 0; i < GameConstants.ROUNDS; i++){
             for(Robot r : robots){
                 if(r.getTeam() == 'B') {

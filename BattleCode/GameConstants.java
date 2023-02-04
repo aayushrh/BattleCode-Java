@@ -2,21 +2,21 @@ package BattleCode;
 
 public class GameConstants {
     //GENERAL
-    public static int ROUNDS = 20;
-    public static Direction[] DIRECTIONS = {new Direction(0, 1), new Direction(1, 1), new Direction(1, 0),
-            new Direction(1, -1), new Direction(0, -1), new Direction(-1, -1), new Direction(-1, 0)};
+    public static final int ROUNDS = 20;
+    public static final Direction[] DIRECTIONS = {new Direction(0, 1), new Direction(1, 1), new Direction(1, 0),
+            new Direction(1, -1), new Direction(0, -1), new Direction(-1, -1), new Direction(-1, 0), new Direction(-1, 1)};
 
     //HEADQUARTERS
-    public static int HQSPAWNRANGE = 3;
-    public static int HQSPAWNCOOLDOWN = 2;
+    public static final int HQSPAWNRANGE = 3;
+    public static final int HQSPAWNCOOLDOWN = 2;
 
     //ROBOTS
-    public static int STATPOINTS = 10;
-    public static int BASEHEALTH = 10;
-    public static int HEALTHMULT = 10;
-    public static int BASEATTACK = 5;
-    public static int BASESPEED = 1;
-    public static int BASEVISRANGE = 4;
-    public static int BASECOMMRANGE = 4;
-    public static int BASEATTRANGE = 3;
+    public static final int STATPOINTS = 10;
+    public static final int BASEHEALTH = 10;
+    public static final int HEALTHMULT = 10;
+    public static final int BASEATTACK = 5;
+    public static final int BASESPEED = 1;
+    public static final int BASEVISRANGE = 4;
+    public static final int BASECOMMRANGE = 4;
+    public static final int BASEATTRANGE = 3;
 }
