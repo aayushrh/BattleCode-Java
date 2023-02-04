@@ -12,4 +12,11 @@ public class GameConstants {
 
     //ROBOTS
     public static int STATPOINTS = 10;
+    public static int BASEHEALTH = 10;
+    public static int HEALTHMULT = 10;
+    public static int BASEATTACK = 5;
+    public static int BASESPEED = 1;
+    public static int BASEVISRANGE = 4;
+    public static int BASECOMMRANGE = 4;
+    public static int BASEATTRANGE = 3;
 }

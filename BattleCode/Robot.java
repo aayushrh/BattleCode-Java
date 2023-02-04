@@ -25,12 +25,12 @@ public class Robot {
         this.loc = loc;
         this.team = team;
         this.cooldownMove = 0;
-        this.speed = speed;
-        this.attack = attack;
-        this.health = health;
-        this.commRange = commRange;
-        this.visRange = visRange;
-        this.attackRange = attackRange;
+        this.speed = speed + GameConstants.BASESPEED;
+        this.attack = attack + GameConstants.BASEATTACK;
+        this.health = health * GameConstants.HEALTHMULT + GameConstants.BASEHEALTH;
+        this.commRange = commRange + GameConstants.BASECOMMRANGE;
+        this.visRange = visRange + GameConstants.BASEVISRANGE;
+        this.attackRange = attackRange + GameConstants.BASEATTRANGE;
     }
 
     public int getSpeed() {
@@ -102,13 +102,13 @@ public class Robot {
             /*System.out.println(!collisionDetection(this, this.getLocation().addDir(dir)));
             System.out.println(distance <= this.speed);
             System.out.println(this.cooldownMove <= 0);*/
-        return !collisionDetection(this, this.getLocation().addDir(dir)) && distance <= this.speed && this.cooldownMove <= 0;
+        return !collisionDetection(this, this.getLocation().add(dir)) && distance <= this.speed && this.cooldownMove <= 0;
     }
 
     public void move(Direction dir, int distance){
         if(canMove(dir, distance)){
             for(int i = 0; i < distance; i++) {
-                this.loc = this.loc.addDir(dir);
+                this.loc = this.loc.add(dir);
             }
         }
     }

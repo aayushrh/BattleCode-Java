@@ -15,23 +15,23 @@ public class Location {
         return new Direction(x, y);
     }
 
-    public Location addDir(Direction dir){
+    public Location add(Direction dir){
         Location newLoc = new Location(this.x, this.y);
         newLoc.x += dir.x;
         newLoc.y += dir.y;
         return newLoc;
     }
 
-    public int distanceTo(Location loc){
-        int distance = (int)Math.round(Math.sqrt(Math.pow(x - loc.x, 2) + Math.pow(y - loc.y, 2)));
-        return distance;
-    }
-
-    public Location addLoc(Location loc){
+    public Location add(Location loc){
         Location newLoc = new Location(this.x, this.y);
         newLoc.x += loc.x;
         newLoc.y += loc.y;
         return newLoc;
+    }
+
+    public int distanceTo(Location loc){
+        int distance = (int)Math.round(Math.sqrt(Math.pow(x - loc.x, 2) + Math.pow(y - loc.y, 2)));
+        return distance;
     }
 
     public boolean equals(Location loc){

@@ -3,7 +3,6 @@ package BattleCode;
 public class RobotInfo {
     private Location loc;
     private char team;
-    private int cooldownMove;
     private int speed, attack, health, commRange, visRange, attackRange;
 
     public RobotInfo(Robot robot) {
@@ -23,10 +22,6 @@ public class RobotInfo {
 
     public char getTeam() {
         return team;
-    }
-
-    public int getCooldownMove() {
-        return cooldownMove;
     }
 
     public int getSpeed() {
