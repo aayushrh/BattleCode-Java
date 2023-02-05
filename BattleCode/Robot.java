@@ -24,6 +24,7 @@ public class Robot {
     private Location loc;
     private char team;
     private int cooldownMove;
+    private int cooldownShoot;
     private int speed, attack, health, commRange, visRange, attackRange, id;
     private ArrayList<Mail> mail;
     private ArrayList<String> storedInfo;
@@ -32,6 +33,7 @@ public class Robot {
         this.loc = loc;
         this.team = team;
         this.cooldownMove = 0;
+        this.cooldownShoot = 0;
         this.speed = speed + GameConstants.BASESPEED;
         this.attack = attack + GameConstants.BASEATTACK;
         this.health = health * GameConstants.HEALTHMULT + GameConstants.BASEHEALTH;
@@ -88,6 +90,16 @@ public class Robot {
 
     public char getTeam() {
         return team;
+    }
+
+    public boolean canShoot(Location loc){
+        return isInRange(this.getLocation(), loc, this.attackRange) && this.cooldownShoot <= 0;
+    }
+
+    public void shoot(Location loc){
+        if(canShoot(loc)){
+            Client.attackSpots.add(new Attack(this.attack, loc));
+        }
     }
 
     public ArrayList<String> getStoredInfo() {
@@ -168,6 +180,11 @@ public class Robot {
 
     protected void endTurn(){
         this.cooldownMove -= 1;
+        this.cooldownShoot -= 1;
+    }
+
+    protected void loseHealth(int health){
+        this.health -= health;
     }
 
 }
