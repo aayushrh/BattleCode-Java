@@ -17,6 +17,12 @@ Robot:
   ArrayList<Mail> getMail():
       gets the mail and clears it after
   
+  void storeInfo(String str):
+      stores the String in your internal array
+  
+  ArrayList<String> getStoredInfo():
+      gets the ArrayList of the information you stored
+  
   RobotInfo[] senseNearbyRobots():
       returns a list of robots in your vision radius
   
