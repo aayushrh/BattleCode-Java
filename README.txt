@@ -8,6 +8,15 @@ Robot:
   void move(Direction dir, int distance):
       takes location and moves in the specifed direction for a distance (doesnt move if canMove returns false)
   
+  boolean canSendMail(Robot r):
+      takes robot and returns whether or not you can send a message to it
+  
+  void sendMail(Robot r, String str):
+      takes robot and sends it mail (doesnt work if canSendMail returns false)
+  
+  ArrayList<Mail> getMail():
+      gets the mail and clears it after
+  
   RobotInfo[] senseNearbyRobots():
       returns a list of robots in your vision radius
   
@@ -35,6 +44,9 @@ Direction(int x, int y):
   
   void rotateLeft():
       rotates the Direction 45 degrees to the left (only works in Direction is max of 1 in x and y)
+
+Mail:
+  Getters for sender and message
 
 RobotInfo:
   Getters for all traits of robot
