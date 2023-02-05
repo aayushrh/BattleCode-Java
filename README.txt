@@ -46,3 +46,11 @@ Location(int x, int y):
   
   Location add(Location loc):
       adds the location to the current location
+      
+      
+Wall(int x, int y):
+
+  Location getWallLoc():
+      returns the location of the designated wall
+
+  
