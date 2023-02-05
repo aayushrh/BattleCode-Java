@@ -26,6 +26,7 @@ public class Robot {
     private int cooldownMove;
     private int speed, attack, health, commRange, visRange, attackRange, id;
     private ArrayList<Mail> mail;
+    private ArrayList<String> storedInfo;
 
     public Robot(Location loc, char team, int speed, int attack, int health, int commRange, int visRange, int attackRange) {
         this.loc = loc;
@@ -38,6 +39,7 @@ public class Robot {
         this.visRange = visRange + GameConstants.BASEVISRANGE;
         this.attackRange = attackRange + GameConstants.BASEATTRANGE;
         this.mail = new ArrayList<Mail>();
+        this.storedInfo = new ArrayList<String>();
         while(true){
             this.id = (int)(Math.random() * 100000) + 1;
             boolean found = false;
@@ -86,6 +88,14 @@ public class Robot {
 
     public char getTeam() {
         return team;
+    }
+
+    public ArrayList<String> getStoredInfo() {
+        return storedInfo;
+    }
+
+    public void storeInfo(String str){
+        this.storedInfo.add(str);
     }
 
     public ArrayList<Mail> getMail() {
