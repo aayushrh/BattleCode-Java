@@ -3,10 +3,15 @@ package BattleCode;
 import java.util.ArrayList;
 
 public class Robot {
-    private boolean collisionDetection(Robot ignore, Location loc){
+    private boolean collisionDetection(Location loc){
         boolean returning = false;
         for(Robot r : Client.robots){
-            if(r.getLocation().equals(loc) && !r.equals(ignore)){
+            if(r.getLocation().equals(loc)){
+                returning = true;
+            }
+        }
+        for(Location l : Client.walls){
+            if(this.getLocation().equals(l)){
                 returning = true;
             }
         }
@@ -122,7 +127,7 @@ public class Robot {
             /*System.out.println(!collisionDetection(this, this.getLocation().addDir(dir)));
             System.out.println(distance <= this.speed);
             System.out.println(this.cooldownMove <= 0);*/
-        return !collisionDetection(this, this.getLocation().add(dir)) && distance <= this.speed && this.cooldownMove <= 0;
+        return !collisionDetection(this.getLocation().add(dir)) && distance <= this.speed && this.cooldownMove <= 0;
     }
 
     public void move(Direction dir, int distance){

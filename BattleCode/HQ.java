@@ -1,11 +1,18 @@
 package BattleCode;
 
 public class HQ {
-    private boolean collisionDetection(Robot robot, Location loc){
+    private boolean collisionDetection(Location loc){
         boolean returning = false;
         for(Robot r : Client.robots){
             Location l = r.getLocation();
-
+            if(l.equals(loc)){
+                returning = true;
+            }
+        }
+        for(Location l : Client.walls){
+            if(l.equals(loc)){
+                returning = true;
+            }
         }
         return returning;
     }
@@ -34,7 +41,7 @@ public class HQ {
             /*System.out.println(!collisionDetection(null, loc));
             System.out.println(isInRange(this.loc, loc, GameConstants.HQSPAWNRANGE));
             System.out.println(this.cooldownSpawn <= 0);*/
-        return (!collisionDetection(null, loc) && isInRange(this.loc, loc, GameConstants.HQSPAWNRANGE) && this.cooldownSpawn <= 0 && speed + health + attack + commRange + visRange + attRange <= GameConstants.STATPOINTS);
+        return (!collisionDetection(loc) && isInRange(this.loc, loc, GameConstants.HQSPAWNRANGE) && this.cooldownSpawn <= 0 && speed + health + attack + commRange + visRange + attRange <= GameConstants.STATPOINTS);
     }
 
     public void create(Location loc, int speed, int health, int attack, int commRange, int visRange, int attRange){

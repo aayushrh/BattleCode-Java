@@ -7,12 +7,14 @@ import RobotPlayers.*;
 public class Client {
     protected static ArrayList<Robot> robots;
     protected static ArrayList<HQ> hqs;
+    protected static ArrayList<Location> walls;
 
     public static void init() {
         robots = new ArrayList<Robot>();
         hqs = new ArrayList<HQ>();
         hqs.add(new HQ(new Location(0, 0), 'B'));
         hqs.add(new HQ(new Location(30, 30), 'R'));
+        walls = new ArrayList<Location>();
     }
 
     public static void main(String[] args){
