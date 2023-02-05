@@ -36,6 +36,9 @@ Direction(int x, int y):
   void rotateLeft():
       rotates the Direction 45 degrees to the left (only works in Direction is max of 1 in x and y)
 
+RobotInfo:
+  Getters for all traits of robot
+
 Location(int x, int y):
 
   int distanceTo(Location loc):
@@ -46,11 +49,5 @@ Location(int x, int y):
   
   Location add(Location loc):
       adds the location to the current location
-      
-      
-Wall(int x, int y):
-
-  Location getWallLoc():
-      returns the location of the designated wall
 
   
