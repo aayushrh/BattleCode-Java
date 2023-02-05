@@ -25,6 +25,7 @@ public class Robot {
     private char team;
     private int cooldownMove;
     private int speed, attack, health, commRange, visRange, attackRange, id;
+    private ArrayList<Mail> mail;
 
     public Robot(Location loc, char team, int speed, int attack, int health, int commRange, int visRange, int attackRange) {
         this.loc = loc;
@@ -36,6 +37,7 @@ public class Robot {
         this.commRange = commRange + GameConstants.BASECOMMRANGE;
         this.visRange = visRange + GameConstants.BASEVISRANGE;
         this.attackRange = attackRange + GameConstants.BASEATTRANGE;
+        this.mail = new ArrayList<Mail>();
         while(true){
             this.id = (int)(Math.random() * 100000) + 1;
             boolean found = false;
@@ -84,6 +86,22 @@ public class Robot {
 
     public char getTeam() {
         return team;
+    }
+
+    public ArrayList<Mail> getMail() {
+        ArrayList<Mail> prevMail = this.mail;
+        mail.clear();
+        return prevMail;
+    }
+
+    public boolean canSendMail(Robot r){
+        return isInRange(this.getLocation(), r.getLocation(), this.commRange);
+    }
+
+    public void sendMail(Robot r, String str){
+        if(canSendMail(r)){
+            this.mail.add(new Mail(r, str));
+        }
     }
 
     public void log(String str){
