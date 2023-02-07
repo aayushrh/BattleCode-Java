@@ -77,6 +77,46 @@
           <li>returns all the nearby robots on the specified team with the specified distance(if distance is more than visRange, it doesnt work)</li>
       </ul>
   </li>
+  <li>RobotInfo senseRobotById(int id)
+      <ul>
+          <li>returns the robot with the specific id</li>
+      </ul>
+  </li>
+  <li>ArrayList<WellInfo> senseNearbyWells()
+      <ul>
+          <li>returns all the nearby wells</li>
+      </ul>
+  </li>
+  <li>ArrayList<WellInfo> senseNearbyWells(int radius)
+      <ul>
+          <li>returns all the nearby wells in the radius (won't work if radius is bigger than vision range</li>
+      </ul>
+  </li>
+  <li>WellInfo senseWellById(int id)
+      <ul>
+          <li>returns the well with the specific id</li>
+      </ul>
+  </li>
+  <li>boolean canCollect(int id)
+      <ul>
+          <li>returns whether you can collect from the well with that specific ID</li>
+      </ul>
+  </li>
+  <li>void collect(int id)
+      <ul>
+          <li>collects from the well with that specific ID (only works if canCollect returns true</li>
+      </ul>
+  </li>
+  <li>boolean canGive(RobotInfo r)
+      <ul>
+          <li>returns whether or not you can give all your resources to that specific robot</li>
+      </ul>
+  </li>
+  <li>void give(RobotInfo r)
+      <ul>
+          <li>gives the resources to that specific robot (only works if canGive returns true</li>
+      </ul>
+  </li>
 </ul>
 
 <b><i>Direction(int x, int y)</i></b>

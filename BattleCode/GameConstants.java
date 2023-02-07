@@ -9,6 +9,7 @@ public class GameConstants {
     //HEADQUARTERS
     public static final int HQSPAWNRANGE = 3;
     public static final int HQSPAWNCOOLDOWN = 2;
+    public static final int HQCARRY = 10000;
 
     //ROBOTS
     public static final int BASEHEALTH = 10;
@@ -17,9 +18,11 @@ public class GameConstants {
     public static final int BASEVISRANGE = 4;
     public static final int BASECOMMRANGE = 1;
     public static final int BASEATTRANGE = 3;
+    public static final int BASECARRY = 5;
     public static final int ATTBOOST = 5;
     public static final int ATTRANGEBOOST = 0;
     public static final int HEALTHBOOST = 20;
     public static final int VISRANGEBOOST = 3;
     public static final int COMMRANGEBOOST = 2;
+    public static final int CARRYBOOST = 10;
 }

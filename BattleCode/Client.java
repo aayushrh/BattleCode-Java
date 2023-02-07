@@ -8,6 +8,7 @@ public class Client {
     protected static ArrayList<RobotController> robots;
     protected static ArrayList<Location> walls;
     protected static ArrayList<Attack> attackSpots;
+    protected static ArrayList<WellInfo> wells;
 
     public static void init() {
         robots = new ArrayList<RobotController>();

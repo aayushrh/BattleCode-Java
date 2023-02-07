@@ -26,10 +26,12 @@ public class RobotController {
     private int cooldownMove;
     private int cooldownShoot;
     private int cooldownSpawn;
-    private int speed, attack, health, commRange, visRange, attackRange, id;
+    private int cooldownCollect;
+    private int speed, attack, health, commRange, visRange, attackRange, id, carryingCap;
     private ArrayList<Mail> mail;
     private ArrayList<String> storedInfo;
     private int type;
+    private int carrying;
 
     public RobotController(int type, Location loc, char team) {
         this.type = type;
@@ -45,6 +47,15 @@ public class RobotController {
             this.commRange = GameConstants.BASECOMMRANGE;
             this.visRange = GameConstants.BASEVISRANGE;
             this.attackRange = GameConstants.BASEATTRANGE;
+            this.carryingCap = GameConstants.BASECARRY;
+        }else{
+            this.speed = 0;
+            this.attack = 0;
+            this.health = 0;
+            this.commRange = 0;
+            this.visRange = 0;
+            this.attackRange = 0;
+            this.carryingCap = GameConstants.HQCARRY;
         }
         if(type == RobotType.ATTACKER){
             this.attack += GameConstants.ATTBOOST;
@@ -54,6 +65,7 @@ public class RobotController {
         }else if (type == RobotType.UTILITIES){
             this.visRange += GameConstants.VISRANGEBOOST;
             this.commRange += GameConstants.COMMRANGEBOOST;
+            this.carryingCap += GameConstants.CARRYBOOST;
         }
         this.mail = new ArrayList<Mail>();
         this.storedInfo = new ArrayList<String>();
@@ -238,6 +250,117 @@ public class RobotController {
     }
 
     /**
+     * @param id id of the robot you are looking for
+     * @return the robot you are looking for
+     */
+    public RobotInfo senseRobotByID(int id){
+        RobotInfo found = null;
+        for(RobotController r : Client.robots){
+            if(r.getID() == id){
+                found = new RobotInfo(r);
+            }
+        }
+        return found;
+    }
+
+    /**
+     * @return all wells found within your vision radius
+     */
+    public ArrayList<WellInfo> senseNearbyWells(){
+        ArrayList<WellInfo> nearby = new ArrayList<WellInfo>();
+        for(WellInfo w : Client.wells){
+            if(isInRange(this.getLocation(), w.getLoc(), this.visRange)){
+                nearby.add(w);
+            }
+        }
+        return nearby;
+    }
+
+    /**
+     * @param radius the search radius
+     * @return all wells found
+     */
+    public ArrayList<WellInfo> senseNearbyWells(int radius){
+        if(radius > this.visRange){
+            return new ArrayList<WellInfo>();
+        }
+        ArrayList<WellInfo> nearby = new ArrayList<WellInfo>();
+        for(WellInfo w : Client.wells){
+            if(isInRange(this.getLocation(), w.getLoc(), radius)){
+                nearby.add(w);
+            }
+        }
+        return nearby;
+    }
+
+    /**
+     * @param id id of the well you are looking for
+     * @return the well you are looking for
+     */
+    public WellInfo senseWellByID(int id){
+        WellInfo found = null;
+        for(WellInfo w : Client.wells){
+            if(w.getId() == id){
+                found = w;
+            }
+        }
+        return found;
+    }
+
+    /**
+     * @param id id of the well you want to collect from
+     * @return whether you can collect or not
+     */
+    public boolean canCollect(int id){
+        WellInfo found = null;
+        for(WellInfo w : Client.wells) {
+            if(w.getId() == id) {
+                found = w;
+            }
+        }
+        return(found != null && isInRange(this.getLocation(), found.getLoc(), 1) && this.cooldownCollect <= 0 && this.carrying + 1 <= carryingCap);
+    }
+
+    /**
+     * @param id id of the well you want to collect from
+     */
+    public void collect(int id){
+        if(canCollect(id)){
+            carrying += 1;
+        }
+    }
+
+    /**
+     * @param r robot you want to give the resources to
+     */
+    public boolean canGive(RobotInfo r){
+        boolean found = false;
+        for(RobotController rc : Client.robots) {
+            if(rc.getID() == r.getId()) {
+                found = true;
+            }
+        }
+        return(found && isInRange(this.getLocation(), r.getLoc(), 1) && this.carrying > 0);
+    }
+
+    /**
+     * @param r robot you want to give the resources to
+     */
+    public void give(RobotInfo r){
+        if(canGive(r)) {
+            RobotController rcf = null;
+            for (RobotController rc : Client.robots) {
+                if (rc.getID() == r.getId()) {
+                    rcf = rc;
+                }
+            }
+            if(rcf.carrying + this.carrying <= rcf.carryingCap){
+                rcf.carrying += this.carrying;
+            }
+        }
+    }
+
+    /**
      * @param dir direction you want to move in
      * @param distance distance you want to move
      * @return whether you can move or not
@@ -288,6 +411,7 @@ public class RobotController {
         this.cooldownMove -= 1;
         this.cooldownShoot -= 1;
         this.cooldownSpawn -= 1;
+        this.cooldownCollect -= 1;
     }
 
     protected void loseHealth(int health){
