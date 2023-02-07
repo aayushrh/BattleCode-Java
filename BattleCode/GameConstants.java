@@ -11,12 +11,15 @@ public class GameConstants {
     public static final int HQSPAWNCOOLDOWN = 2;
 
     //ROBOTS
-    public static final int STATPOINTS = 10;
     public static final int BASEHEALTH = 10;
-    public static final int HEALTHMULT = 10;
     public static final int BASEATTACK = 5;
     public static final int BASESPEED = 1;
     public static final int BASEVISRANGE = 4;
-    public static final int BASECOMMRANGE = 4;
+    public static final int BASECOMMRANGE = 1;
     public static final int BASEATTRANGE = 3;
+    public static final int ATTBOOST = 5;
+    public static final int ATTRANGEBOOST = 0;
+    public static final int HEALTHBOOST = 20;
+    public static final int VISRANGEBOOST = 3;
+    public static final int COMMRANGEBOOST = 2;
 }

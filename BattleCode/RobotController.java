@@ -31,21 +31,32 @@ public class RobotController {
     private ArrayList<String> storedInfo;
     private int type;
 
-    public RobotController(int type, Location loc, char team, int speed, int attack, int health, int commRange, int visRange, int attackRange) {
+    public RobotController(int type, Location loc, char team) {
+        this.type = type;
         this.loc = loc;
         this.team = team;
         this.cooldownMove = 0;
         this.cooldownShoot = 0;
         this.cooldownSpawn = 0;
-        this.speed = speed + GameConstants.BASESPEED;
-        this.attack = attack + GameConstants.BASEATTACK;
-        this.health = health * GameConstants.HEALTHMULT + GameConstants.BASEHEALTH;
-        this.commRange = commRange + GameConstants.BASECOMMRANGE;
-        this.visRange = visRange + GameConstants.BASEVISRANGE;
-        this.attackRange = attackRange + GameConstants.BASEATTRANGE;
+        if(type != RobotType.HEADQUARTERS) {
+            this.speed = GameConstants.BASESPEED;
+            this.attack = GameConstants.BASEATTACK;
+            this.health = GameConstants.BASEHEALTH;
+            this.commRange = GameConstants.BASECOMMRANGE;
+            this.visRange = GameConstants.BASEVISRANGE;
+            this.attackRange = GameConstants.BASEATTRANGE;
+        }
+        if(type == RobotType.ATTACKER){
+            this.attack += GameConstants.ATTBOOST;
+            this.attackRange += GameConstants.ATTRANGEBOOST;
+        }else if (type == RobotType.DEFENDER){
+            this.health += GameConstants.HEALTHBOOST;
+        }else if (type == RobotType.UTILITIES){
+            this.visRange += GameConstants.VISRANGEBOOST;
+            this.commRange += GameConstants.COMMRANGEBOOST;
+        }
         this.mail = new ArrayList<Mail>();
         this.storedInfo = new ArrayList<String>();
-        this.type = type;
         while(true){
             this.id = (int)(Math.random() * 100000) + 1;
             boolean found = false;
@@ -244,17 +255,11 @@ public class RobotController {
     /**
      * @param type type of robot you want to create
      * @param loc direction you want to move in
-     * @param speed speed of robot you want to create
-     * @param health health stat of the robot you want to create
-     * @param attack attack stat of the robot you want to create
-     * @param commRange Communication Range stat of the robot you want to create
-     * @param visRange Vision Range stat of the robot you want to create
-     * @param attRange Attack Range stat of the robot you want to create
      * @return whether you can create the specified robot or not
      */
-    public boolean canCreate(int type, Location loc, int speed, int health, int attack, int commRange, int visRange, int attRange){
+    public boolean canCreate(int type, Location loc){
         if(this.type == RobotType.HEADQUARTERS && type != RobotType.HEADQUARTERS) {
-            return (!collisionDetection(loc) && isInRange(this.loc, loc, GameConstants.HQSPAWNRANGE) && this.cooldownSpawn <= 0 && speed + health + attack + commRange + visRange + attRange <= GameConstants.STATPOINTS);
+            return (!collisionDetection(loc) && isInRange(this.loc, loc, GameConstants.HQSPAWNRANGE) && this.cooldownSpawn <= 0);
         }
         return false;
     }
@@ -262,16 +267,10 @@ public class RobotController {
     /**
      * @param type type of robot you want to create
      * @param loc direction you want to move in
-     * @param speed speed of robot you want to create
-     * @param health health stat of the robot you want to create
-     * @param attack attack stat of the robot you want to create
-     * @param commRange Communication Range stat of the robot you want to create
-     * @param visRange Vision Range stat of the robot you want to create
-     * @param attRange Attack Range stat of the robot you want to create
      */
-    public void create(int type, Location loc, int speed, int health, int attack, int commRange, int visRange, int attRange){
-        if(canCreate(type, loc, speed, health, attack, commRange, visRange, attRange)){
-            Client.robots.add(new RobotController(type, loc, 'B', speed, health, attack, commRange, visRange, attRange));
+    public void create(int type, Location loc, char team){
+        if(canCreate(type, loc)){
+            Client.robots.add(new RobotController(type, loc, team));
             this.cooldownSpawn = GameConstants.HQSPAWNCOOLDOWN;
         }
     }
