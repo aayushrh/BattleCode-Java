@@ -93,7 +93,7 @@
   </li>
 </ul>
 
-<b><i>Location(int x, int y)/i></b>
+<b><i>Location(int x, int y)</i></b>
 <ul>
   <li>Location add(Location loc)
       <ul>
