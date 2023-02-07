@@ -8,6 +8,12 @@ Robot:
   void move(Direction dir, int distance):
       takes location and moves in the specifed direction for a distance (doesnt move if canMove returns false)
   
+  boolean canShoot(Location loc):
+      takes location adn returns whether on not you can shoot there
+  
+  void shoot(Location loc):
+      takes location and shoots there (only shoots after all movement)
+  
   boolean canSendMail(Robot r):
       takes robotController and returns whether or not you can send a message to it
   
