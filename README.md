@@ -79,4 +79,36 @@
   </li>
 </ul>
 
+<b><i>Direction(int x, int y)</i></b>
+<ul>
+  <li>void rotateRight()
+      <ul>
+          <li>rotates the current Direction to the right 45 degrees</li>
+      </ul>
+  </li>
+  <li>void rotateLeft()
+      <ul>
+          <li>rotates the current Direction to the left 45 degrees</li>
+      </ul>
+  </li>
+</ul>
+
+<b><i>Location(int x, int y)/i></b>
+<ul>
+  <li>Location add(Location loc)
+      <ul>
+          <li>adds the specified location to the current Location</li>
+      </ul>
+  </li>
+  <li>Location add(Direction dir)
+      <ul>
+          <li>adds the specified direction to the current Location</li>
+      </ul>
+  </li>
+  <li>int distanceTo(Location loc)
+      <ul>
+          <li>returns the distance from the current location to the given location</li>
+      </ul>
+  </li>
+</ul>
 
