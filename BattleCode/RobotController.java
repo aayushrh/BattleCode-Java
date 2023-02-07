@@ -150,18 +150,27 @@ public class RobotController {
      * @param r Robot sending from
      * @return whether you can send a mail or not
      */
-    public boolean canSendMail(RobotController r){
-        return isInRange(this.getLocation(), r.getLocation(), this.commRange);
+    public boolean canSendMail(RobotInfo r){
+        boolean found = false;
+        for(RobotController rc : Client.robots) {
+            if(rc.getID() == r.getId()) {
+                found = true;
+            }
+        }
+        return isInRange(this.getLocation(), r.getLoc(), this.commRange) && found;
     }
 
     /**
      * @param r Robot sending from
      * @param str message you are sending
-     * @return whether you can move or not
      */
-    public void sendMail(RobotController r, String str){
+    public void sendMail(RobotInfo r, String str){
         if(canSendMail(r)){
-            this.mail.add(new Mail(r, str));
+            for(RobotController rc : Client.robots) {
+                if(rc.getID() == r.getId()) {
+                    rc.mail.add(new Mail(r, str));
+                }
+            }
         }
     }
 

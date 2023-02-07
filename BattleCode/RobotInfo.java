@@ -5,6 +5,7 @@ public class RobotInfo {
     private char team;
     private int speed, attack, health, commRange, visRange, attackRange;
     private int type;
+    private int id;
 
     public RobotInfo(RobotController rc) {
         this.loc = rc.getLocation();
@@ -16,7 +17,10 @@ public class RobotInfo {
         this.visRange = rc.getVisRange();
         this.attackRange = rc.getAttackRange();
         this.type = rc.getType();
+        this.id = rc.getID();
     }
+
+    public int getId() {return id;}
 
     public int getType() {return type;}
 
