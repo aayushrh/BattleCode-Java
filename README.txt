@@ -9,10 +9,10 @@ Robot:
       takes location and moves in the specifed direction for a distance (doesnt move if canMove returns false)
   
   boolean canSendMail(Robot r):
-      takes robot and returns whether or not you can send a message to it
+      takes robotController and returns whether or not you can send a message to it
   
   void sendMail(Robot r, String str):
-      takes robot and sends it mail (doesnt work if canSendMail returns false)
+      takes robotController and sends it mail (doesnt work if canSendMail returns false)
   
   ArrayList<Mail> getMail():
       gets the mail and clears it after
@@ -38,10 +38,10 @@ Robot:
 HQ:
   
   boolean canCreate(Location loc, int speed, int health, int attack, int commRange, int visRange, int attackRange):
-      takes location and all stats of the robot and returns whether you can create the robot
+      takes location and all stats of the robotController and returns whether you can create the robotController
   
   void create(Location loc, int speed, int health, int attack, int commRange, int visRange, int attackRange):
-      takes location and all stats of the obot and creates the robot (doesnt work if canCreate returns false)
+      takes location and all stats of the obot and creates the robotController (doesnt work if canCreate returns false)
   
 Direction(int x, int y):
   
@@ -55,7 +55,7 @@ Mail:
   Getters for sender and message
 
 RobotInfo:
-  Getters for all traits of robot
+  Getters for all traits of robotController
 
 Location(int x, int y):
 

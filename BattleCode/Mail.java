@@ -1,10 +1,10 @@
 package BattleCode;
 
 public class Mail {
-    private Robot sender;
+    private RobotController sender;
     private String message;
 
-    public Robot getSender() {
+    public RobotController getSender() {
         return sender;
     }
 
@@ -12,7 +12,7 @@ public class Mail {
         return message;
     }
 
-    public Mail(Robot sender, String message) {
+    public Mail(RobotController sender, String message) {
         this.sender = sender;
         this.message = message;
     }
