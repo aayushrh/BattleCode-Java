@@ -2,8 +2,8 @@ package RobotPlayers.examplePlayer2;
 
 import BattleCode.*;
 
-public class RobotPlayer {
-    public static void update(RobotController rc){
+public class RobotPlayer implements IRobotPlayer{
+    public void update(RobotController rc){
 
     }
 }

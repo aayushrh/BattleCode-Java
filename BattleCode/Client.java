@@ -16,15 +16,15 @@ public class Client {
         attackSpots = new ArrayList<Attack>();
     }
 
-    public static void main(String[] args){
+    public static void run(IRobotPlayer bl, IRobotPlayer re){
         init();
         for(int i = 0; i < GameConstants.ROUNDS; i++){
             for(RobotController r : robots){
                 if(r.getTeam() == 'B') {
-                    RobotManager.updateBlue(r);
+                    bl.update(r);
                 }
                 else if (r.getTeam() == 'R'){
-                    RobotManager.updateRed(r);
+                    re.update(r);
                 }
                 r.endTurn();
             }
